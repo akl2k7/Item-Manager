@@ -85,6 +85,11 @@ Vue.component("add-weapon", {
 				rarity: this.rarity,
 				special: this.special
 			}));
+			this.$root.saveData();
 		}
 	}
+});
+
+Vue.component("view-weapons", {
+	template: `<div></div>`
 });
