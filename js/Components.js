@@ -51,7 +51,7 @@ Vue.component("add-weapon", {
 				<input type="number" class="form-control" v-model="rarity"/>
 			</div>
 			<div class="col-sm-4">
-				<button class="btn btn-primary">Add Weapon</button>
+				<button class="btn btn-primary" @click="addWeapon">Add Weapon</button>
 			</div>
 		</div>
 		
@@ -62,12 +62,29 @@ Vue.component("add-weapon", {
 			skill: "",
 			damage: 0,
 			crit: 0,
-			range: "short",
+			range: "Short",
 			encumbrance: 0,
 			hardPoints: 0,
 			price: 0,
 			rarity: 1,
 			special: []
 		};
+	}, 
+	methods: {
+		addWeapon(){
+			let weapons = this.$root.weapons;
+			weapons.push(new Weapon({
+				name: this.name,
+				skill: this.skill,
+				damage: this.damage,
+				crit: this.crit,
+				range: this.range,
+				encumbrance: this.encumbrance,
+				hardPoints: this.hardPoints,
+				price: this.price,
+				rarity: this.rarity,
+				special: this.special
+			}));
+		}
 	}
 });
