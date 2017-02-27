@@ -7,6 +7,7 @@ class Item{
 		this.hardPoints = hardPoints;
 		this.price = price;
 		this.rarity = rarity;
+		this.id = 0;
 	}
 }
 

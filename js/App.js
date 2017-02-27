@@ -3,11 +3,18 @@
 var vm = new Vue({
 	el: "#app",
 	data: {
+		// Data for items used
 		weapons: [],
 		armor:[],
 		gear: [],
 		attachments: [],
-		lsData: {}
+
+		// Local Storage data
+		lsData: {},
+
+		// Method for handling the view
+		currentView: "view-weapons",
+		currentWeapon: new Weapon()
 	},
 	created(){
 		this.loadData();
@@ -21,6 +28,12 @@ var vm = new Vue({
 				this.armor = this.lsData.armor;
 				this.gear = this.lsData.gear;
 				this.attachments = this.lsData.attachments;
+
+				// Set ids for all of these arrays
+				this.setIds(this.weapons);
+
+				// Initial values for currentWeapon, etc.
+				this.currentWeapon = this.weapons[0];
 			}
 			else
 				this.lsData = {
@@ -40,6 +53,13 @@ var vm = new Vue({
 			// Save lsData to localStorage
 			let dataString = JSON.stringify(this.lsData);
 			localStorage.setItem("swItems", dataString);
+		},
+		changeView(newView){
+			this.currentView = newView;
+		},
+		setIds(arr){
+			for(let i = 0; i < arr.length; i++)
+				arr[i].id = i;
 		}
 	}
 });

@@ -12,7 +12,10 @@
 </head>
 <body>
 	<div class="container" id="app">
-		<add-weapon></add-weapon>
+		<h2>Item Manager</h2>
+		<add-weapon v-if="currentView === 'add-weapon'"></add-weapon>
+		<view-weapons v-if="currentView === 'view-weapons'" :weapons="weapons"></view-weapons>
+		<view-weapon v-if="currentView === 'view-weapon'" :weapon="currentWeapon"></view-weapon>
 	</div>
 	<script src="js/vue.js"></script>
 	<script src="js/Classes.js"></script>
