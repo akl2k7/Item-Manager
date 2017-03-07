@@ -204,3 +204,111 @@ Vue.component("view-weapon", {
 		}
 	}
 });
+
+Vue.component("edit-weapon", {
+	template: `<div>
+		<h2>Edit Weapon</h2>
+		<div class="form-group">
+			<label>Name</label>
+			<input type="text" v-model="name" class="form-control"/>
+		</div>
+
+		<input-text label="Skill" :value="skill"></input-text>
+		<input-number label="Damage" :value="damage"></input-number>
+		<input-number label="Critical" :value="crit"></input-number>
+		<input-text label="Range" :value="range"></input-text>
+		<input-number label="Encumbrance" :value="encumbrance"></input-number>
+		<input-number label="Hard Points" :value="hardPoints"></input-number>
+		<input-number label="Price" :value="price"></input-number>
+		<input-number label="Rarity" :value="rarity"></input-number>
+
+		<button class="btn btn-primary">Change</button>
+	</div>`,
+	data: function(){
+		return {
+			name: this.weapon.name,
+			skill: this.weapon.skill,
+			damage: this.weapon.damage,
+			crit: this.weapon.crit,
+			range: this.weapon.range,
+			encumbrance: this.weapon.encumbrance,
+			hardPoints: this.weapon.hardPoints,
+			price: this.weapon.price,
+			rarity: this.weapon.rarity,
+			id: this.weapon.id
+		};
+	},
+	props: ["weapon"],
+	methods: {
+		changeWeapon(){
+			this.$root.weapons.splice(this.id, 1, new Weapon({
+				name: this.weapon.name,
+				skill: this.weapon.skill,
+				damage: this.weapon.damage,
+				crit: this.weapon.crit,
+				range: this.weapon.range,
+				encumbrance: this.weapon.encumbrance,
+				hardPoints: this.weapon.hardPoints,
+				price: this.weapon.price,
+				rarity: this.weapon.rarity,
+				id: this.weapon.id
+			}));
+		}
+	}
+});
+
+// Armor components
+Vue.component('add-armor', {
+	template: `<div>
+		<input-text label="Name" :value="name"></input-text>
+		<input-number label="Defense" :value="defense"></input-number>
+		<input-number label="Soak" :value="soak"></input-number>
+		<input-number label="Encumbrance" :value="encumbrance"></input-number>
+		<input-number label="Hard Points" :value="hardPoints"></input-number>
+		<input-number label="Price" :value="price"></input-number>
+		<input-number label="Rarity" :value="rarity"></input-number>
+		<button class="btn btn-primary" @click="addArmor">Add Armor</button>
+	</div>`,
+	data(){
+		return {
+			name: "",
+			defense: 0,
+			soak: 0,
+			encumbrance: 0,
+			hardPoints: 0,
+			price: 0,
+			rarity: 0
+		};
+	},
+	methods: {
+		addArmor(){
+
+		}
+	}
+});
+
+// Form components, for drastically reducing the amount of HTML I have to write.
+// No, seriously, it was getting pretty tedious
+Vue.component('input-text', {
+	template: `<div class="form-group">
+		<label>{{label}}</label>
+		<input type='text' v-model="value" class="form-control"/>
+	</div>`,
+	props:["label", "value"]
+});
+
+Vue.component('input-number', {
+	template: `<div class="form-group">
+		<label>{{label}}</label>
+		<input type="number" v-model="value" class="form-control"/>
+	</div>`,
+	props: ["label", "value"]
+});
+
+Vue.component("input-textarea", {
+	template: `<div class="form-group">
+		<label>{{label}}</label>
+		<textarea v-model="value" class="form-control"></textarea>
+	</div>`,
+	props: ["label", "value"]
+})
