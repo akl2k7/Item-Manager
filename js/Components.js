@@ -54,7 +54,6 @@ Vue.component("add-weapon", {
 				<button class="btn btn-primary" @click="addWeapon">Add Weapon</button>
 			</div>
 		</div>
-		
 	</div>`,
 	data: function(){
 		return {
@@ -93,6 +92,7 @@ Vue.component("add-weapon", {
 Vue.component("view-weapons", {
 	template: `<div>
 		<h2>View Weapons</h2>
+		<button class="btn btn-primary" @click="addNewWeapon">Add New Weapon</button>
 		<ul class="list-group">
 			<li class="list-group-item hidden-xs">
 				<div class="row">
@@ -163,6 +163,9 @@ Vue.component("view-weapons", {
 		viewSingleWeapon(id){
 			this.$root.currentWeapon = this.weapons[id];
 			this.$root.currentView = "view-weapon";
+		},
+		addNewWeapon(){
+			this.$root.currentView = "add-weapon";
 		}
 	}
 });
