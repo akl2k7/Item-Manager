@@ -290,28 +290,48 @@ Vue.component('add-armor', {
 	}
 });
 
-// Form components, for drastically reducing the amount of HTML I have to write.
-// No, seriously, it was getting pretty tedious
-Vue.component('input-text', {
-	template: `<div class="form-group">
-		<label>{{label}}</label>
-		<input type='text' v-model="value" class="form-control"/>
-	</div>`,
-	props:["label", "value"]
-});
-
-Vue.component('input-number', {
-	template: `<div class="form-group">
-		<label>{{label}}</label>
-		<input type="number" v-model="value" class="form-control"/>
-	</div>`,
-	props: ["label", "value"]
-});
-
-Vue.component("input-textarea", {
-	template: `<div class="form-group">
-		<label>{{label}}</label>
-		<textarea v-model="value" class="form-control"></textarea>
-	</div>`,
-	props: ["label", "value"]
+// Navigation component
+Vue.component("navbar", {
+	template: `<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" 
+						class="navbar-toggle collapsed"
+						data-toggle="collapse"
+						data-target="#item-navigation"
+						aria-expanded="false"
+						>
+						<span class="sr-only">Toggle navigation</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+	        		</button>
+				</div>
+				<div class="collapse navbar-collapse" id="item-navigation">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle"
+							data-toggle="dropdown"
+							role="button"
+							aria-haspopup="true"
+							aria-expanded="false">Weapons</a>
+							<ul class="dropdown-menu">
+								<li><a href="#" @click="changeView('view-weapons')">View Weapons</a></li>
+								<li><a href="#" @click="changeView('add-weapon')">Add Weapon</a></li>
+							</ul>
+						</li>
+						<li><a href="#">Armor</a></li>
+						<li><a href="#">Gear</a></li>
+						<li><a href="#">Attachments</a></li>
+						<li><a href="#">Log In</a></li>
+						<li><a href="#" @click="changeView('sign-up-form')">Sign Up</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>`,
+	methods: {
+		changeView(newView){
+			this.$root.currentView = newView;
+		}
+	}
 })

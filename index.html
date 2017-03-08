@@ -12,39 +12,20 @@
 </head>
 <body>
 	<div class="container" id="app">
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" 
-						class="navbar-toggle collapsed"
-						data-toggle="collapse"
-						data-target="#item-navigation"
-						aria-expanded="false"
-						>
-						<span class="sr-only">Toggle navigation</span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-	        		</button>
-				</div>
-				<div class="collapse navbar-collapse" id="item-navigation">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Weapons</a></li>
-						<li><a href="#">Armor</a></li>
-						<li><a href="#">Gear</a></li>
-						<li><a href="#">Attachments</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+		<navbar></navbar>
 		<h2>Item Manager</h2>
 		<add-weapon v-if="currentView === 'add-weapon'"></add-weapon>
 		<view-weapons v-if="currentView === 'view-weapons'" :weapons="weapons"></view-weapons>
 		<view-weapon v-if="currentView === 'view-weapon'" :weapon="currentWeapon"></view-weapon>
 		<edit-weapon v-else-if="currentView === 'edit-weapon'" :weapon="currentWeapon"></edit-weapon>
+
+		<!-- Account components -->
+		<sign-up-form v-else-if="currentView === 'sign-up-form'"></sign-up-form>
 	</div>
 	<script src="js/vue.js"></script>
 	<script src="js/Classes.js"></script>
+	<script src="js/formComponents.js"></script>
+	<script src="js/accountComponents.js"></script>
 	<script src="js/Components.js"></script>
 	<script src="js/App.js"></script>
 </body>

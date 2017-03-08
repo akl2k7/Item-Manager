@@ -28,3 +28,11 @@ class Weapon extends Item{
 
 	}
 }
+
+class Armor extends Item{
+	constructor(obj = {}){
+		super(obj.name, obj.encumbrance, obj.hardPoints, obj.price, obj.rarity);
+		this.defense = obj.defense;
+		this.soak = obj.soak;
+	}
+}
